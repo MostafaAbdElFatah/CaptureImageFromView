@@ -15,11 +15,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func takeScreenShot(_ sender: UIButton) {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
     }
-
+    
 
 }
 
